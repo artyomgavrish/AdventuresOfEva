@@ -1,0 +1,44 @@
+﻿using UnityEngine;
+using UnityEngine.UI;
+
+public class HealthBar : MonoBehaviour
+{
+    [SerializeField] public static Image HealthBarImage;
+
+
+    public static void SetHealthBarValue(float value)
+    {
+        //value = value;
+        HealthBarImage.fillAmount = value / 100f;
+        if (HealthBarImage.fillAmount < 0.2f)
+        {
+            SetHealthBarColor(Color.red);
+        }
+        else if (HealthBarImage.fillAmount < 0.49f)
+        {
+            SetHealthBarColor(Color.yellow);
+        }
+        else
+        {
+            SetHealthBarColor(Color.green);
+        }
+    }
+
+    public static float GetHealthBarValue()
+    {
+        return HealthBarImage.fillAmount;
+    }
+
+
+    public static void SetHealthBarColor(Color healthColor)
+    {
+        HealthBarImage.color = healthColor;
+    }
+
+ 
+    private void Start()
+    {
+        HealthBarImage = GetComponent<Image>();
+
+    }
+}
